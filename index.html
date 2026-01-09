@@ -128,13 +128,22 @@
     <a href="index.html">Home</a>
     <a href="sobre.html">Sobre</a>
     <a href="shows.html">Shows</a>
-    <a href="https://wa.me/1697719053" target="_blank" rel="noopener">Contato (WhatsApp: 1697719053)</a>
+    <a href="#" id="contatoLink" data-phone="1697719053">Contato</a>
   </nav>
 
   <script>
     function irParaLink() {
       window.location.href = "https://www.instagram.com/guimmcoficial/";
     }
+
+    // abre WhatsApp em nova aba ao clicar em "Contato" sem mostrar o número
+    document.getElementById('contatoLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      const phone = (this.dataset.phone || '').replace(/\D/g, '');
+      if (!phone) return;
+      const url = 'https://wa.me/' + phone;
+      window.open(url, '_blank', 'noopener');
+    });
   </script>
 </body>
 
