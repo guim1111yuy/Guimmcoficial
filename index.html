@@ -173,3 +173,753 @@
 </body>
 
 </html>
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ð“•ð“¸ð“» ð“¨ð“¸ð“¾ ð“•ð“µð“²ð”__â­’Ëšï½¡ðŸ“½â˜†âˆ˜â Ëšâ Ë³â Â°</title>
+  <style>
+    /* CSS Styles are the same as before, with additions for the menu and modal */
+    :root {
+      --primary-color-light: #ffffff;
+      --secondary-color-light: #f0f0f0;
+      --font-color-light: #1a1a1a;
+      --accent-color-light: #e50914;
+      --card-shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+      --primary-color-dark: #141414;
+      --secondary-color-dark: #1f1f1f;
+      --font-color-dark: #f5f5f5;
+      --accent-color-dark: #e50914;
+      --card-shadow-dark: 0 4px 8px rgba(0, 0, 0, 0.3);
+      --font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --border-radius: 8px;
+    }
+
+    body {
+      background-color: var(--primary-color-dark);
+      color: var(--font-color-dark);
+      transition: background-color 0.3s, color 0.3s;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: var(--font-family);
+    }
+
+    body.light-mode {
+      background-color: var(--primary-color-light);
+      color: var(--font-color-light);
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--secondary-color-dark);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    body.light-mode .header {
+      background-color: var(--secondary-color-light);
+    }
+
+    /* --- NEW: Menu Icon (Hamburger) Styles --- */
+    .menu-icon {
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+    }
+
+    .menu-icon .bar {
+      width: 25px;
+      height: 3px;
+      background-color: var(--font-color-dark);
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    body.light-mode .menu-icon .bar {
+      background-color: var(--font-color-light);
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: var(--accent-color-dark);
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      max-width: 400px;
+    }
+
+    .search-bar input {
+      width: 100%;
+      padding: 0.7rem;
+      border-radius: var(--border-radius);
+      border: 1px solid #555;
+      background-color: #333;
+      color: var(--font-color-dark);
+      font-size: 1rem;
+    }
+
+    body.light-mode .search-bar input {
+      border: 1px solid #ccc;
+      background-color: #fff;
+      color: var(--font-color-light);
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      /* Increased gap */
+    }
+
+    .theme-switch-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .theme-switch {
+      position: relative;
+      display: inline-block;
+      width: 50px;
+      height: 24px;
+    }
+
+    .theme-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #555;
+      transition: .4s;
+      border-radius: 24px;
+    }
+
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 16px;
+      width: 16px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: .4s;
+      border-radius: 50%;
+    }
+
+    input:checked+.slider {
+      background-color: var(--accent-color-dark);
+    }
+
+    input:checked+.slider:before {
+      transform: translateX(26px);
+    }
+
+    /* --- NEW: Side Navigation Menu Styles --- */
+    #side-menu {
+      height: 100%;
+      width: 250px;
+      position: fixed;
+      z-index: 1500;
+      top: 0;
+      left: -250px;
+      background-color: var(--secondary-color-dark);
+      overflow-x: hidden;
+      transition: 0.5s;
+      padding-top: 60px;
+    }
+
+    body.light-mode #side-menu {
+      background-color: var(--secondary-color-light);
+    }
+
+    #side-menu a,
+    #side-menu .language-item {
+      padding: 10px 15px;
+      text-decoration: none;
+      font-size: 1.1rem;
+      color: var(--font-color-dark);
+      display: block;
+      transition: 0.3s;
+    }
+
+    body.light-mode #side-menu a,
+    body.light-mode #side-menu .language-item {
+      color: var(--font-color-light);
+    }
+
+    #side-menu a:hover {
+      color: var(--accent-color-dark);
+    }
+
+    #side-menu .close-btn {
+      position: absolute;
+      top: 0;
+      right: 25px;
+      font-size: 36px;
+      margin-left: 50px;
+      color: var(--font-color-dark);
+    }
+
+    body.light-mode #side-menu .close-btn {
+      color: var(--font-color-light);
+    }
+
+    .language-submenu {
+      display: none;
+      padding-left: 20px;
+      background-color: #2a2a2a;
+    }
+
+    body.light-mode .language-submenu {
+      background-color: #e0e0e0;
+    }
+
+    .language-item:hover .language-submenu {
+      display: block;
+    }
+
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      padding: 1.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .category-tab {
+      padding: 0.6rem 1.2rem;
+      border: 1px solid #555;
+      background-color: transparent;
+      color: var(--font-color-dark);
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 0.9rem;
+    }
+
+    body.light-mode .category-tab {
+      color: var(--font-color-light);
+      border: 1px solid #ccc;
+    }
+
+    .category-tab.active,
+    .category-tab:hover {
+      background-color: var(--accent-color-dark);
+      color: #fff;
+      border-color: var(--accent-color-dark);
+    }
+
+    #movie-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 1.5rem;
+      padding: 0 2rem 2rem;
+    }
+
+    .movie-card {
+      background-color: var(--secondary-color-dark);
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--card-shadow-dark);
+      transition: transform 0.3s;
+      cursor: pointer;
+      position: relative;
+    }
+
+    body.light-mode .movie-card {
+      background-color: var(--secondary-color-light);
+      box-shadow: var(--card-shadow-light);
+    }
+
+    .movie-card:hover {
+      transform: scale(1.05);
+    }
+
+    .movie-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .movie-card-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+      padding: 2rem 1rem 0.5rem;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .movie-card:hover .movie-card-overlay {
+      opacity: 1;
+    }
+
+    .movie-card-overlay button {
+      background-color: rgba(255, 255, 255, 0.8);
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #141414;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .movie-card-overlay button:hover {
+      background-color: #fff;
+    }
+
+    #video-player-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.9);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    #video-player-modal.active {
+      display: flex;
+    }
+
+    #video-player-container {
+      width: 90%;
+      max-width: 1200px;
+      position: relative;
+    }
+
+    #video-player {
+      width: 100%;
+      border-radius: var(--border-radius);
+    }
+
+    #close-player-btn {
+      position: absolute;
+      top: -40px;
+      right: 0;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+
+    /* --- NEW: About Modal Styles --- */
+    .modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: none;
+      justify-content: center;
+      align-items: center;
+      z-index: 2000;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .modal-content {
+      background-color: var(--secondary-color-dark);
+      color: var(--font-color-dark);
+      padding: 2rem;
+      border-radius: var(--border-radius);
+      width: 80%;
+      max-width: 600px;
+      position: relative;
+      line-height: 1.6;
+    }
+
+    body.light-mode .modal-content {
+      background-color: var(--secondary-color-light);
+      color: var(--font-color-light);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 2rem;
+      cursor: pointer;
+      border: none;
+      background: none;
+      color: inherit;
+    }
+
+    /* Banner Ad Container */
+    #ad-banner-container {
+      display: flex;
+      justify-content: center;
+      padding: 10px 0;
+      background-color: var(--secondary-color-dark);
+    }
+
+    body.light-mode #ad-banner-container {
+      background-color: var(--secondary-color-light);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+
+      .search-bar {
+        display: none;
+        /* Hide search on small screens to make space */
+      }
+
+      #movie-grid {
+        grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+        gap: 1rem;
+        padding: 0 1rem 1rem;
+      }
+    }
+  </style>
+  <!-- Ads popunder -->
+  <script type='text/javascript'
+    src='//pl27654533.revenuecpmgate.com/a5/70/a9/a570a97362a15235b295fdc939504e42.js'></script>
+</head>
+
+<body>
+  <!-- NEW: SIDE NAVIGATION MENU -->
+  <nav id="side-menu">
+    <a href="javascript:void(0)" class="close-btn" id="close-menu-btn">&times;</a>
+    <div class="language-item">
+      ð“›ð“ªð“·ð“°ð“¾ð“ªð“°ð“® â–¼
+      <div class="language-submenu">
+        <a href="#">English</a>
+        <a href="#">à¦¬à¦¾à¦‚à¦²à¦¾</a>
+        <a href="#">Hindi</a>
+      </div>
+    </div>
+    <a id="youtube-link" href="#" target="_blank">â€¢ ð“¨ð“¸ð“¾ð“£ð“¾ð“«ð“® ð“’ð“±ð“ªð“·ð“·ð“®ð“µ</a>
+    <a id="facebook-link" href="#" target="_blank">â€¢ ð“•ð“ªð“¬ð“®ð“«ð“¸ð“¸ð“´ ð“Ÿð“ªð“°ð“®</a>
+    <a id="telegram-link" href="#" target="_blank">â€¢ ð“£ð“®ð“µð“®ð“°ð“»ð“ªð“¶ ð“–ð“»ð“¸ð“¾ð“¹</a>
+    <a href="javascript:void(0)" id="about-btn">â€¢ ð“ð“«ð“¸ð“¾ð“½</a>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="header">
+    <!-- NEW: MENU ICON (Hamburger) -->
+    <div class="menu-icon" id="menu-open-btn">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </div>
+    <div class="logo">ð…ð¨ð«ð˜ð¨ð®ð…ð¥ð¢ð±</div>
+    <div class="search-bar">
+      <input type="search" id="search-input" placeholder="Search by title...">
+    </div>
+    <div class="header-controls">
+      <div class="theme-switch-wrapper">
+        <span>â˜€ï¸</span>
+        <label class="theme-switch">
+          <input type="checkbox" id="theme-toggle">
+          <span class="slider"></span>
+        </label>
+        <span>ðŸŒ›</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ad Banner Container -->
+  <div id="ad-banner-container">
+    <script type="text/javascript">
+      atOptions = {
+        'key': '933238f350bfc4aa8b741b1ebbc29595',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript"
+      src="//www.highperformanceformat.com/933238f350bfc4aa8b741b1ebbc29595/invoke.js"></script>
+  </div>
+
+  <!-- USER PANEL CONTENT -->
+  <main id="user-panel">
+    <div class="category-tabs" id="category-tabs">
+      <button class="category-tab active" data-category="All">All</button>
+      <button class="category-tab" data-category="Movie">Movies</button>
+      <button class="category-tab" data-category="Anime">Anime</button>
+      <button class="category-tab" data-category="Song">Song</button>
+      <button class="category-tab" data-category="Series">Series</button>
+      <button class="category-tab" data-category="Short Video">Short Videos</button>
+    </div>
+    <div id="movie-grid"></div>
+  </main>
+
+  <!-- MOVIE PLAYER MODAL -->
+  <div id="video-player-modal">
+    <div id="video-player-container">
+      <button id="close-player-btn">&times;</button>
+      <video id="video-player" controls></video>
+    </div>
+  </div>
+
+  <!-- NEW: ABOUT MODAL -->
+  <div id="about-modal" class="modal">
+    <div class="modal-content">
+      <button id="about-modal-close-btn" class="modal-close-btn">&times;</button>
+      <h2>About Us</h2>
+      <p id="about-content">Loading about information...</p>
+    </div>
+  </div>
+
+
+  <!-- Firebase SDK Scripts -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // --- FIREBASE INITIALIZATION ---
+      const firebaseConfig = {
+        apiKey: "AIzaSyClb84HV8jylJdsynOWmrQgdxoGUMvDy5E",
+        authDomain: "movieapp-307.firebaseapp.com",
+        databaseURL: "https://movieapp-307-default-rtdb.firebaseio.com",
+        projectId: "movieapp-307",
+        storageBucket: "movieapp-307.firebasestorage.app",
+        messagingSenderId: "340199854372",
+        appId: "1:340199854372:web:70c76f2904c2166f46e3b1",
+        measurementId: "G-FXKDZ4H4WP"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const database = firebase.database();
+      // --- END OF FIREBASE INITIALIZATION ---
+
+      let allMovies = [];
+      let currentFilter = 'All';
+
+      // Element selection
+      const movieGrid = document.getElementById('movie-grid');
+      const searchInput = document.getElementById('search-input');
+      const categoryTabs = document.getElementById('category-tabs');
+      const videoPlayerModal = document.getElementById('video-player-modal');
+      const videoPlayer = document.getElementById('video-player');
+      const closePlayerBtn = document.getElementById('close-player-btn');
+      const themeToggle = document.getElementById('theme-toggle');
+
+      // --- NEW: Menu and Modal element selection ---
+      const sideMenu = document.getElementById('side-menu');
+      const menuOpenBtn = document.getElementById('menu-open-btn');
+      const menuCloseBtn = document.getElementById('close-menu-btn');
+      const aboutBtn = document.getElementById('about-btn');
+      const aboutModal = document.getElementById('about-modal');
+      const aboutModalCloseBtn = document.getElementById('about-modal-close-btn');
+      const youtubeLink = document.getElementById('youtube-link');
+      const facebookink = document.getElementById('facebook-link');
+      const telegramLink = document.getElementById('telegram-link');
+      const aboutContent = document.getElementById('about-content');
+
+      // Theme handling
+      const applyTheme = (theme) => {
+        if (theme === 'light') {
+          document.body.classList.add('light-mode');
+          themeToggle.checked = false;
+        } else {
+          document.body.classList.remove('light-mode');
+          themeToggle.checked = true;
+        }
+      };
+      const toggleTheme = () => {
+        const newTheme = document.body.classList.contains('light-mode') ? 'dark' : 'light';
+        localStorage.setItem('theme', newTheme);
+        applyTheme(newTheme);
+      };
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      applyTheme(savedTheme);
+
+      // Movie rendering
+      const renderMovies = (moviesToRender) => {
+        movieGrid.innerHTML = '';
+        if (moviesToRender.length === 0) {
+          movieGrid.innerHTML = '<p>No movies found.</p>';
+          return;
+        }
+        moviesToRender.forEach(movie => {
+          const movieCard = document.createElement('div');
+          movieCard.className = 'movie-card';
+          movieCard.innerHTML = `
+                    <img src="${movie.posterUrl}" alt="${movie.title}">
+                    <div class="movie-card-overlay">
+                        <button class="play-btn" data-video-url="${movie.videoUrl}" data-movie-id="${movie.id}" title="Play">&#9658;</button>
+                        <button class="download-btn" data-video-url="${movie.videoUrl}" data-title="${movie.title}" title="Download">ðŸ’¾</button>
+                    </div>
+                `;
+          movieGrid.appendChild(movieCard);
+        });
+      };
+
+      const filterAndRender = () => {
+        const searchTerm = searchInput.value.toLowerCase();
+        let filteredMovies = allMovies.filter(movie => movie.title && movie.category);
+        if (currentFilter !== 'All') {
+          filteredMovies = filteredMovies.filter(movie => movie.category === currentFilter);
+        }
+        if (searchTerm) {
+          filteredMovies = filteredMovies.filter(movie => movie.title.toLowerCase().includes(searchTerm));
+        }
+        renderMovies(filteredMovies);
+      };
+
+      // Fetch movies from Firebase
+      const listenForMovieChanges = () => {
+        const cachedMovies = localStorage.getItem('movies');
+        if (cachedMovies) {
+          allMovies = JSON.parse(cachedMovies);
+          filterAndRender();
+        }
+        const moviesRef = database.ref('movies');
+        moviesRef.on('value', (snapshot) => {
+          const moviesData = snapshot.val();
+          if (moviesData) {
+            allMovies = Object.keys(moviesData).map(key => ({ id: key, ...moviesData[key] }));
+            localStorage.setItem('movies', JSON.stringify(allMovies));
+          } else {
+            allMovies = [];
+            localStorage.removeItem('movies');
+          }
+          filterAndRender();
+        }, (error) => {
+          console.error("Firebase Read Error: ", error);
+          alert("Could not fetch movies from the database.");
+        });
+      };
+
+      // --- NEW: Fetch settings from Firebase for menu links and about text ---
+      const fetchAndApplySettings = () => {
+        const settingsRef = database.ref('settings');
+        settingsRef.on('value', (snapshot) => {
+          const settingsData = snapshot.val();
+          if (settingsData) {
+            // Set URLs with a fallback to '#' if not present
+            youtubeLink.href = settingsData.youtubeUrl || '#';
+            facebookink.href = settingsData.facebookUrl || '#';
+            telegramLink.href = settingsData.telegramUrl || '#';
+
+            // Set About content with a fallback message
+            aboutContent.textContent = settingsData.aboutText || 'About information not available at the moment.';
+          } else {
+            console.log("No settings found in the database.");
+            aboutContent.textContent = 'About information not available at the moment.';
+          }
+        }, (error) => {
+          console.error("Firebase Settings Read Error: ", error);
+          alert("Could not fetch settings from the database.");
+        });
+      };
+
+      // Event Listeners
+      themeToggle.addEventListener('change', toggleTheme);
+      searchInput.addEventListener('input', filterAndRender);
+      categoryTabs.addEventListener('click', (e) => {
+        if (e.target.classList.contains('category-tab')) {
+          document.querySelector('.category-tab.active').classList.remove('active');
+          e.target.classList.add('active');
+          currentFilter = e.target.dataset.category;
+          filterAndRender();
+        }
+      });
+      movieGrid.addEventListener('click', (e) => {
+        const playBtn = e.target.closest('.play-btn');
+        const downloadBtn = e.target.closest('.download-btn');
+        if (playBtn) {
+          const videoUrl = playBtn.dataset.videoUrl;
+          const movieId = playBtn.dataset.movieId;
+          videoPlayer.src = videoUrl;
+          videoPlayer.dataset.currentMovieId = movieId;
+          videoPlayerModal.classList.add('active');
+          const resumeTime = localStorage.getItem(`resume_${movieId}`);
+          if (resumeTime) {
+            videoPlayer.currentTime = parseFloat(resumeTime);
+          }
+          videoPlayer.play();
+        }
+        if (downloadBtn) {
+          e.stopPropagation();
+          const a = document.createElement('a');
+          a.href = downloadBtn.dataset.videoUrl;
+          a.download = `${downloadBtn.dataset.title}.mp4`;
+          document.body.appendChild(a);
+          a.click();
+          document.body.removeChild(a);
+        }
+      });
+      closePlayerBtn.addEventListener('click', () => {
+        videoPlayer.pause();
+        videoPlayerModal.classList.remove('active');
+      });
+      videoPlayer.addEventListener('timeupdate', () => {
+        const movieId = videoPlayer.dataset.currentMovieId;
+        if (movieId && videoPlayer.currentTime > 0) {
+          if (!videoPlayer.lastSaveTime || (Date.now() - videoPlayer.lastSaveTime) > 5000) {
+            localStorage.setItem(`resume_${movieId}`, videoPlayer.currentTime);
+            videoPlayer.lastSaveTime = Date.now();
+          }
+        }
+      });
+
+      // --- NEW: Event listeners for side menu and about modal ---
+      menuOpenBtn.addEventListener('click', () => {
+        sideMenu.style.left = '0';
+      });
+
+      menuCloseBtn.addEventListener('click', () => {
+        sideMenu.style.left = '-250px';
+      });
+
+      aboutBtn.addEventListener('click', () => {
+        aboutModal.classList.add('active');
+      });
+
+      aboutModalCloseBtn.addEventListener('click', () => {
+        aboutModal.classList.remove('active');
+      });
+
+      // Initialize fetching data
+      listenForMovieChanges();
+      fetchAndApplySettings();
+    });
+  </script>
+</body>
+
+</html>
