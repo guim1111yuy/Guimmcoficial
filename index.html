@@ -6,11 +6,66 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GUIM MC | Site Oficial</title>
-  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    header.header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      color: #ffffff;
+      text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #ffffff;
+      opacity: 0.85;
+    }
+
+    main.player-container {
+      margin: 20px 0;
+    }
+
+    nav.menu {
+      display: flex;
+      gap: 15px;
+    }
+
+    nav.menu a {
+      color: #53c96d;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+
+    nav.menu a:hover {
+      color: #b029e6;
+    }
+  </style>
 </head>
 
 <body>
-
   <header class="header">
     <h1>GUIM MC</h1>
     <p>ENTÃO ESTRALA O SOM</p>
@@ -29,7 +84,6 @@
     <a href="shows.html">Shows</a>
     <a href="contato.html">Contato</a>
   </nav>
-
 </body>
 
 </html>
