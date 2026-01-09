@@ -16,8 +16,7 @@
     }
 
     body {
-      background: url("https://chatgpt.com/backend-api/estuary/content?id=file_0000000093dc61f7ba2b7bab40fdce20&cp=pri&ma=90000&ts=20462&p=igh&cid=1&sig=284f6ee412fsZ2wpqmDsFH9nh8xUceKKyVvJdkXV4h33d433aa6e0aff1a74aa8b") no-repeat center center fixed;
-      background-size: cover;
+      background: linear-gradient(135deg, #000, #1a1a1a);
       color: #fff;
       overflow-x: hidden;
       display: flex;
@@ -29,34 +28,47 @@
 
     header.header {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 30px;
     }
 
     header h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       color: #ffffff;
       text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
     }
 
     header p {
-      font-size: 1.2rem;
+      font-size: 1.5rem;
       color: #ffffff;
       opacity: 0.85;
     }
 
-    main.player-container {
+    main.vsl-container {
+      width: 90%;
+      max-width: 800px;
       margin: 20px 0;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    main.vsl-container video {
+      width: 100%;
+      height: auto;
+      display: block;
     }
 
     nav.menu {
       display: flex;
-      gap: 15px;
+      gap: 20px;
+      margin-top: 20px;
     }
 
     nav.menu a {
       color: #53c96d;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 1.2rem;
+      font-weight: bold;
       transition: color 0.3s ease;
     }
 
@@ -72,11 +84,11 @@
     <p>ENTÃO ESTRALA O SOM</p>
   </header>
 
-  <main class="player-container">
-    <audio controls autoplay loop preload="auto">
-      <source src="musica/demais.mp3" type="audio/mpeg">
-      Seu navegador não suporta áudio.
-    </audio>
+  <main class="vsl-container">
+    <video controls autoplay loop>
+      <source src="videos/vsl.mp4" type="video/mp4">
+      Seu navegador não suporta vídeos.
+    </video>
   </main>
 
   <nav class="menu">
