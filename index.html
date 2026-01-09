@@ -3,9 +3,9 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GUIM MC | Site Oficial</title>
+
+  <title>GUIM MC • ENTÃO ESTRALA O SOM</title>
 
   <style>
     * {
@@ -16,160 +16,203 @@
     }
 
     body {
-      background: linear-gradient(135deg, #000, #1a1a1a);
+      background-color: #000;
       color: #fff;
       overflow-x: hidden;
+      cursor: pointer;
       display: flex;
-      flex-direction: column;
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      position: relative;
-      /* permite z-index nos filhos */
     }
 
-    header.header {
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-      /* necessário para z-index */
-      z-index: 50;
-      /* traz o header para frente */
-      pointer-events: auto;
-    }
-
-    header h1 {
-      font-size: 3.5rem;
-      position: relative;
-      /* necessário para o ::before */
-      color: #ffffff;
-      -webkit-text-stroke: 0px transparent;
-      /* evita preenchimento estranho em alguns navegadores */
-      box-shadow: none;
-      /* remove sombra que podia parecer uma borda quadrada */
-      animation: pulse 1.5s infinite alternate;
-      cursor: pointer;
-      text-stroke: 0.5px rgba(255, 255, 255, 0.1);
-      /* fallback suave em navegadores que suportam */
-    }
-
-    /* contorno que segue as letras */
-    header h1::before {
-      content: attr(data-text);
-      position: absolute;
-      left: 0;
-      top: 0;
+    .parallax {
+      background-image: url("https://images.unsplash.com/photo-1520974735194-8f2f0a7a3f97");
       width: 100%;
-      height: 100%;
-      z-index: -1;
-      /* atrás do texto preenchido */
-      color: transparent;
-      -webkit-text-stroke: 3px #53c96d;
-      /* contorno colorido ao redor das letras */
-      text-stroke: 3px #53c96d;
-      /* complemento para browsers que suportem */
-      filter: blur(0.3px);
-      /* suaviza o contorno */
-      pointer-events: none;
+      height: 100vh;
+      background-attachment: flex;
+      background-position: center;
+      background-repeat: center;
+      background-size: cover;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
     }
 
-    @keyframes pulse {
-      from {
-        text-shadow: 0 0 25px rgba(9, 86, 252, 0.6), 0 0 50px rgba(255, 255, 255, 0.8);
-      }
-
-      to {
-        text-shadow: 0 0 10px rgba(9, 86, 252, 0.4), 0 0 30px rgba(255, 255, 255, 0.5);
-      }
+    .overlay {
+      background: rgba(0, 0, 0, 0.65);
+      position: absolute;
+      inset: 30;
     }
 
-    header p {
-      font-size: 1.5rem;
+    .content {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 6px;
       color: #ffffff;
+      text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
       opacity: 0.85;
     }
 
-    main.player-container {
-      margin: 20px 0;
-      position: relative;
-      /* posicionamento para z-index */
-      z-index: 40;
-      /* player à frente do fundo mas atrás do header */
+    .chain {
+      margin: 30px auto;
+      width: 180px;
+      height: 8px;
+      background: linear-gradient(90deg, #53c96d, #b029e6, #574313);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      animation: glow 2.5s infinite alternate;
     }
 
-    main.player-container audio {
-      width: 100%;
-      max-width: 300px;
-      position: relative;
-      z-index: 60;
-      /* controles de áudio sempre na frente */
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px rgba(224, 75, 212, 0.4);
+
+      }
+
+      to {
+        box-shadow: 0 0 30px rgba(55, 158, 218, 0.9);
+      }
     }
 
-    main.vsl-container,
-    main.vsl-container video {
-      position: relative;
-      z-index: 20;
-      /* mais abaixo para não cobrir header/menu/audio */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .chain {
+        width: 150px;
+        height: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body onclick="irParaLink()">
+
+  <!-- 🎵 MÚSICA DA SUA PASTA -->
+  <audio id="musica" autoplay loop>
+    <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
+
+  </audio>
+
+  <section class="parallax">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <h1>GUIM MC</h1>
+      <div class="chain"></div>
+      <p>ENTÃO ESTRALA O SOM</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">clique </p>
+    </div>
+  </section>
+
+  <script>
+    function irParaLink() {
+      const musica = document.getElementById("musica");
+      if (musica.paused) {
+        musica.play();
+      } else {
+        window.location.href = "https://www.instagram.com/guimmcoficial/";
+      }
+    }
+  </script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Áudios no site</title>
+
+  <style aria-valuemin="">
+    body {
+      margin: relative;
+      height: flex;
+      background-color: #117481;
+      display: center;
+      align-items: center;
+      justify-content: center;
     }
 
-    nav.menu {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-      position: relative;
-      z-index: 50;
-      /* menu na frente */
-    }
-
-    nav.menu a {
-      color: #53c96d;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: bold;
-      transition: color 0.3s ease;
-    }
-
-    nav.menu a:hover {
-      color: #b029e6;
+    audio {
+      width: 320px;
     }
   </style>
 </head>
 
 <body>
+
+  <audio controls auto loop preload="auto">
+    <source src="musica/demais.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GUIM MC | Site Oficial</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
   <header class="header">
-    <h1 onclick="irParaLink()" data-text="GUIM MC">GUIM MC</h1>
+    <h1>GUIM MC</h1>
     <p>ENTÃO ESTRALA O SOM</p>
   </header>
 
   <main class="player-container">
-    <audio id="musica" controls autoplay loop preload="auto">
-      <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
+    <audio controls autoplay loop preload="auto">
       <source src="musica/demais.mp3" type="audio/mpeg">
       Seu navegador não suporta áudio.
     </audio>
   </main>
 
   <nav class="menu">
-    <a href="index.html">Play</a>
-    <a href="sobre.html">Sobre</a>
+    <a <a href="index.html">Play</a>
+    href="sobre.html">Sobre</a>
     <a href="shows.html">Shows</a>
-    <a href="#" id="contatoLink" data-phone="1697719053">Contato</a>
+    <a href="contato.html">Contato</a>
   </nav>
 
-  <script>
-    function irParaLink() {
-      window.location.href = "https://www.instagram.com/guimmcoficial/";
-    }
-
-    // abre WhatsApp em nova aba ao clicar em "Contato" sem mostrar o número
-    document.getElementById('contatoLink').addEventListener('click', function (e) {
-      e.preventDefault();
-      const phone = (this.dataset.phone || '').replace(/\D/g, '');
-      if (!phone) return;
-      const url = 'https://wa.me/' + phone;
-      window.open(url, '_blank', 'noopener');
-    });
-  </script>
 </body>
 
 </html>
