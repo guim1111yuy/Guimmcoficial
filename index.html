@@ -1,24 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>GUIM MC • ENTÂO ESTRALA O SOM</title>
+  <title>GUIM MC • ENTÃO ESTRALA O SOM</title>
 
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Arial', sans-serif;
+      font-family: Arial, sans-serif;
     }
 
     body {
       background-color: #000;
       color: #fff;
       overflow-x: hidden;
+      cursor: pointer;
     }
 
-    /* PARALLAX BACKGROUND */
     .parallax {
       background-image: url("https://images.unsplash.com/photo-1520974735194-8f2f0a7a3f97");
       min-height: 100vh;
@@ -33,14 +36,12 @@
       position: relative;
     }
 
-    /* OVERLAY CINEMATOGRÁFICO */
     .overlay {
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       position: absolute;
       inset: 0;
     }
 
-    /* CONTEÚDO */
     .content {
       position: relative;
       text-align: center;
@@ -51,8 +52,12 @@
       font-size: 4rem;
       letter-spacing: 6px;
       color: #d4af37;
-      /* ouro */
       text-shadow: 0 0 25px rgba(212, 175, 55, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
     }
 
     p {
@@ -62,7 +67,6 @@
       opacity: 0.85;
     }
 
-    /* CORRENTE DE OURO SIMBÓLICA */
     .chain {
       margin: 30px auto;
       width: 180px;
@@ -91,7 +95,13 @@
   </style>
 </head>
 
-<body>
+<body onclick="irParaLink()">
+
+  <!-- 🎵 MÚSICA DA SUA PASTA -->
+  <audio id="musica" autoplay loop>
+    <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
 
   <section class="parallax">
     <div class="overlay"></div>
@@ -99,10 +109,17 @@
     <div class="content">
       <h1>GUIM MC</h1>
       <div class="chain"></div>
-      <p> ENTÂO ESTRALA O SOM </p>
+      <p>ENTÃO ESTRALA O SOM</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">clique para acessar</p>
     </div>
   </section>
 
+  <script>
+    function irParaLink() {
+      window.location.href = "https://www.instagram.com/guimmcoficial/";
+    }
+  </script>
+
 </body>
 
-</html
+</html>
