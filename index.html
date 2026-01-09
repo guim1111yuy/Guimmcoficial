@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>GUIM MC • ENTÃO ESTRALA O SOM</title>
 
   <style>
@@ -87,6 +86,16 @@
       }
     }
 
+    .audio-container {
+      margin-top: 20px;
+      text-align: center;
+    }
+
+    audio {
+      width: 90%;
+      max-width: 400px;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2.6rem;
@@ -110,49 +119,22 @@
       <h1>GUIM MC</h1>
       <div class="chain"></div>
       <p>ENTÃO ESTRALA O SOM</p>
-      <p style="font-size: 0.8rem; opacity: 0.6;">clique </p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">clique para acessar</p>
     </div>
   </section>
+
+  <div class="audio-container">
+    <audio controls loop>
+      <source src="musica/demais.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </div>
 
   <script>
     function irParaLink() {
       window.location.href = "https://www.instagram.com/guimmcoficial/";
     }
   </script>
-
-</body>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Áudios no site</title>
-
-  <style>
-    body {
-      margin: 670;
-      height: 100vh;
-      background-color: #140b94;
-      display: relative;
-      align-items: center;
-      justify-content: center;
-    }
-
-    audio {
-      width: 65777px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <audio controls auto loop preload="auto">
-    <source src="musica/demais.mp3" type="audio/mpeg" auto>
-
-  </audio>
 
 </body>
 
