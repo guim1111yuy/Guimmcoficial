@@ -30,7 +30,7 @@
       background-image: url("https://images.unsplash.com/photo-1520974735194-8f2f0a7a3f97");
       width: 100%;
       height: 100vh;
-      background-attachment: fixed;
+      background-attachment: flex;
       background-position: center;
       background-repeat: center;
       background-size: cover;
@@ -44,7 +44,7 @@
     .overlay {
       background: rgba(0, 0, 0, 0.65);
       position: absolute;
-      inset: 0;
+      inset: 30;
     }
 
     .content {
@@ -57,7 +57,7 @@
     h1 {
       font-size: 4rem;
       letter-spacing: 6px;
-      color: #0ac4d1;
+      color: #ffffff;
       text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
       transition: transform 0.3s ease;
     }
@@ -175,6 +175,42 @@
     <source src="musica/demais.mp3" type="audio/mpeg">
     Seu navegador não suporta áudio.
   </audio>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GUIM MC | Site Oficial</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="header">
+    <h1>GUIM MC</h1>
+    <p>ENTÃO ESTRALA O SOM</p>
+  </header>
+
+  <main class="player-container">
+    <audio controls autoplay loop preload="auto">
+      <source src="musica/demais.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
+  </main>
+
+  <nav class="menu">
+    <a href="index.html">Home</a>
+    <a href="sobre.html">Sobre</a>
+    <a href="shows.html">Shows</a>
+    <a href="contato.html">Contato</a>
+  </nav>
 
 </body>
 
