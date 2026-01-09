@@ -131,7 +131,12 @@
 
   <script>
     function irParaLink() {
-      window.location.href = "https://SEULINKAQUI.com";
+      const musica = document.getElementById("musica");
+      if (musica.paused) {
+        musica.play();
+      } else {
+        window.location.href = "https://www.instagram.com/guimmcoficial/";
+      }
     }
   </script>
 
