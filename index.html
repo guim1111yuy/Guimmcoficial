@@ -96,6 +96,52 @@
       max-width: 400px;
     }
 
+    .raindrop {
+      position: absolute;
+      top: -50px;
+      width: 30px;
+      height: 30px;
+      background: url('raindrop.png') no-repeat center center;
+      background-size: contain;
+      animation: fall 5s linear infinite, sway 2s ease-in-out infinite;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh);
+      }
+    }
+
+    @keyframes sway {
+
+      0%,
+      100% {
+        transform: translateX(-10px);
+      }
+
+      50% {
+        transform: translateX(10px);
+      }
+    }
+
+    .monitor {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 100px;
+      height: 100px;
+      background: url('monitor.png') no-repeat center center;
+      background-size: contain;
+    }
+
+    .monitor.left {
+      left: 10%;
+    }
+
+    .monitor.right {
+      right: 10%;
+    }
+
     @media (max-width: 768px) {
       h1 {
         font-size: 2.6rem;
@@ -116,7 +162,9 @@
     <div class="overlay"></div>
 
     <div class="content">
+      <div class="monitor left"></div>
       <h1>GUIM MC</h1>
+      <div class="monitor right"></div>
       <div class="chain"></div>
       <p>ENTÃO ESTRALA O SOM</p>
       <p style="font-size: 0.8rem; opacity: 0.6;">clique para acessar</p>
@@ -133,6 +181,19 @@
   <script>
     function irParaLink() {
       window.location.href = "https://www.instagram.com/guimmcoficial/";
+    }
+
+    // Gerar gotas de chuva
+    const body = document.body;
+    for (let i = 0; i < 50; i++) {
+      const raindrop = document.createElement('div');
+      raindrop.classList.add('raindrop');
+      raindrop.style.left = Math.random() * 100 + 'vw';
+      raindrop.style.animationDelay = Math.random() * 5 + 's';
+      raindrop.onclick = () => {
+        window.location.href = "https://www.seulink.com";
+      };
+      body.appendChild(raindrop);
     }
   </script>
 
