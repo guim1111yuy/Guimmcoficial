@@ -55,19 +55,13 @@
       opacity: 0.85;
     }
 
-    main.vsl-container {
-      width: 90%;
-      max-width: 800px;
+    main.player-container {
       margin: 20px 0;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      border-radius: 10px;
-      overflow: hidden;
     }
 
-    main.vsl-container video {
+    main.player-container audio {
       width: 100%;
-      height: auto;
-      display: block;
+      max-width: 300px;
     }
 
     nav.menu {
@@ -91,21 +85,16 @@
 </head>
 
 <body>
-  <audio id="musica" autoplay loop>
-    <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-
   <header class="header">
     <h1 onclick="irParaLink()">GUIM MC</h1>
     <p>ENTÃO ESTRALA O SOM</p>
   </header>
 
-  <main class="vsl-container">
-    <video muted loop>
-      <source src="videos/vsl.mp4" type="video/mp4">
-      Seu navegador não suporta vídeos.
-    </video>
+  <main class="player-container">
+    <audio controls autoplay loop preload="auto">
+      <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
+      Seu navegador não suporta áudio.
+    </audio>
   </main>
 
   <nav class="menu">
