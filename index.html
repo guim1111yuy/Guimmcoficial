@@ -1,12 +1,189 @@
-<!-- ========================================================= -->
-<!-- PROJETO: SITE OFICIAL – GUIM MC                           -->
-<!-- CORES MANTIDAS: PRETO / BRANCO / DOURADO                  -->
-<!-- ========================================================= -->
-
-
-<!-- ======================= index.html ====================== -->
 <!DOCTYPE html>
 <html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GUIM MC • ENTÃO ESTRALA O SOM</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background-color: #000;
+      color: #fff;
+      overflow-x: hidden;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .parallax {
+      background-image: url("https://images.unsplash.com/photo-1520974735194-8f2f0a7a3f97");
+      width: 100%;
+      height: 100vh;
+      background-attachment: flex;
+      background-position: center;
+      background-repeat: center;
+      background-size: cover;
+
+      display: invisible ;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.65);
+      position: absolute;
+      inset: 30;
+    }
+
+    .content {
+      position: initial;
+      text-align: center;
+      z-index: 2;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 4rem;
+      letter-spacing: 6px;
+      color: #ffffff;
+      text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
+      transition: transform 0.3s ease;
+    }
+
+    h1:hover {
+      transform: scale(1.05);
+    }
+
+    p {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      opacity: 0.85;
+    }
+
+    .chain {
+      margin: 30px auto;
+      width: 180px;
+      height: 8px;
+      background: linear-gradient(90deg, #53c96d, #b029e6, #574313);
+      border-radius: 20px;
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.7);
+      animation: glow 2.5s infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        box-shadow: 0 0 10px rgba(224, 75, 212, 0.4);
+
+      }
+
+      to {
+        box-shadow: 0 0 30px rgba(55, 158, 218, 0.9);
+      }
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .chain {
+        width: 150px;
+        height: 6px;
+      }
+    }
+  </style>
+</head>
+
+<body onclick="irParaLink()">
+
+  <!-- 🎵 MÚSICA DA SUA PASTA -->
+  <audio id="musica" autoplay loop>
+    <source src="musica/estrala-o-som.mp3" type="audio/mpeg">
+
+  </audio>
+
+  <section class="parallax">
+    <div class="overlay"></div>
+
+    <div class="content">
+      <h1>GUIM MC</h1>
+      <div class="chain"></div>
+      <p>ENTÃO ESTRALA O SOM</p>
+      <p style="font-size: 0.8rem; opacity: 0.6;">clique </p>
+    </div>
+  </section>
+
+  <script>
+    function irParaLink() {
+      const musica = document.getElementById("musica");
+      if (musica.paused) {
+        musica.play();
+      } else {
+        window.location.href = "https://www.instagram.com/guimmcoficial/";
+      }
+    }
+  </script>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Áudios no site</title>
+
+  <style aria-valuemin="">
+    body {
+      margin: relative;
+      height: flex;
+      background-color: #117481;
+      display: center;
+      align-items: center;
+      justify-content: center;
+    }
+
+    audio {
+      width: 320px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <audio controls auto loop preload="auto">
+    <source src="musica/demais.mp3" type="audio/mpeg">
+    Seu navegador não suporta áudio.
+  </audio>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -14,6 +191,7 @@
   <title>GUIM MC | Site Oficial</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
 
   <header class="header">
@@ -29,39 +207,13 @@
   </main>
 
   <nav class="menu">
-    <a href="index.html">Home</a>
-    <a href="sobre.html">Sobre</a>
+    <a <a href="index.html">Play</a>
+    href="sobre.html">Sobre</a>
     <a href="shows.html">Shows</a>
     <a href="contato.html">Contato</a>
   </nav>
 
 </body>
+
 </html>
 
-
-<!-- ======================= sobre.html ====================== -->
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sobre | GUIM MC</title>
-  <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-
-  <header class="header">
-    <h1>Sobre GUIM MC</h1>
-  </header>
-
-  <section class="content">
-    <p>
-      GUIM MC é um artista do funk urbano, com identidade própria,
-      energia de baile e presença marcante. Música feita pra pista,
-      pra rua e pra estralar o som.
-    </p>
-  </section>
-
-  <nav class="menu">
-    <a href="index.html">Home</a>
-    <a href="shows.html
