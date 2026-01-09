@@ -3,42 +3,6 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Áudios no site</title>
-
-  <style>
-    body {
-      margin: 0;
-      height: 100vh;
-      background-color: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    audio {
-      width: 320px;
-    }
-  </style>
-</head>
-
-<body>
-
-  <audio controls autoplay loop preload="play/auto">
-    <source src="musica/demais.mp3" type="audio/mpeg">
-    Seu navegador não suporta áudio.
-  </audio>
-
-</body>
-
-</html>
-
-<!DOCTYPE html>
-<html lang="pt-BR">
-
-<head>
-  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>GUIM MC • ENTÃO ESTRALA O SOM</title>
@@ -56,11 +20,16 @@
       color: #fff;
       overflow-x: hidden;
       cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
     }
 
     .parallax {
       background-image: url("https://images.unsplash.com/photo-1520974735194-8f2f0a7a3f97");
-      min-height: 100vh;
+      width: 100%;
+      height: 100vh;
       background-attachment: fixed;
       background-position: center;
       background-repeat: no-repeat;
@@ -82,6 +51,7 @@
       position: relative;
       text-align: center;
       z-index: 2;
+      padding: 20px;
     }
 
     h1 {
@@ -126,6 +96,15 @@
     @media (max-width: 768px) {
       h1 {
         font-size: 2.6rem;
+      }
+
+      p {
+        font-size: 1rem;
+      }
+
+      .chain {
+        width: 150px;
+        height: 6px;
       }
     }
   </style>
