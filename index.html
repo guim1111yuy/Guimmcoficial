@@ -35,6 +35,17 @@
       font-size: 3.5rem;
       color: #ffffff;
       text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from {
+        text-shadow: 0 0 25px rgba(9, 86, 252, 0.6), 0 0 50px rgba(255, 255, 255, 0.8);
+      }
+
+      to {
+        text-shadow: 0 0 10px rgba(9, 86, 252, 0.4), 0 0 30px rgba(255, 255, 255, 0.5);
+      }
     }
 
     header p {
@@ -85,7 +96,7 @@
   </header>
 
   <main class="vsl-container">
-    <video controls autoplay loop>
+    <video autoplay muted loop>
       <source src="videos/vsl.mp4" type="video/mp4">
       Seu navegador não suporta vídeos.
     </video>
