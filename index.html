@@ -40,13 +40,37 @@
 
     header h1 {
       font-size: 3.5rem;
+      position: relative;
+      /* necessário para o ::before */
       color: #ffffff;
-      text-shadow: 0 0 25px rgba(9, 86, 252, 0.6);
+      -webkit-text-stroke: 0px transparent;
+      /* evita preenchimento estranho em alguns navegadores */
+      box-shadow: none;
+      /* remove sombra que podia parecer uma borda quadrada */
       animation: pulse 1.5s infinite alternate;
       cursor: pointer;
       text-stroke: 0.5px rgba(255, 255, 255, 0.1);
       /* fallback suave em navegadores que suportam */
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6), 0 0 45px rgba(9, 86, 252, 0.25);
+    }
+
+    /* contorno que segue as letras */
+    header h1::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      /* atrás do texto preenchido */
+      color: transparent;
+      -webkit-text-stroke: 3px #53c96d;
+      /* contorno colorido ao redor das letras */
+      text-stroke: 3px #53c96d;
+      /* complemento para browsers que suportem */
+      filter: blur(0.3px);
+      /* suaviza o contorno */
+      pointer-events: none;
     }
 
     @keyframes pulse {
@@ -113,7 +137,7 @@
 
 <body>
   <header class="header">
-    <h1 onclick="irParaLink()">GUIM MC</h1>
+    <h1 onclick="irParaLink()" data-text="GUIM MC">GUIM MC</h1>
     <p>ENTÃO ESTRALA O SOM</p>
   </header>
 
